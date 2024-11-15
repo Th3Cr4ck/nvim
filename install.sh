@@ -15,7 +15,7 @@ if [ -f nvim-linux64.tar.gz ]; then
 	sudo apt install -y npm unzip
 
 else
-	echo "Error: no se puso descargar Neovim"
+	echo "Error: no se pudo descargar Neovim"
 fi
 
 # recargar la terminal

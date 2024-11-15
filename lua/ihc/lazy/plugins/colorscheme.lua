@@ -10,9 +10,10 @@ dependencies = { 'rktjmp/lush.nvim' },
         -- vim.cmd([[colorscheme nightfox]])
         -- vim.cmd([[colorscheme dayfox]])
 		-- vim.cmd("colorscheme kanagawa")
-		require ("bluloco").setup({transparent = true})
+		-- require ("bluloco").setup({transparent = true})
+		require ("bluloco").setup()
 		vim.cmd("colorscheme bluloco")
-		transparent = true
+		-- transparent = true
     end,
 
 }
