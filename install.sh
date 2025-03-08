@@ -1,23 +1,38 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-# update packages
+# Actualizar los paquetes del sistema
 sudo apt update && sudo apt upgrade -y
 
-# install neovim
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-if [ -f nvim-linux64.tar.gz ]; then
-	sudo rm -rf /opt/nvim
-	sudo tar -C /opt -xzf nvim-linux64.tar.gz
-	echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> ~/.bashrc
-	rm nvim-linux64.tar.gz
+# Instalar dependencias necesarias
+sudo apt install -y curl
+sudo apt install xclip xsel wl-clipboard
 
-	# install required packages
-	sudo apt install -y npm unzip
+# Descargar la última versión de Neovim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 
-else
-	echo "Error: no se pudo descargar Neovim"
+# Verificar si la descarga fue exitosa
+if [ $? -ne 0 ]; then
+    echo "❌ Error: No se pudo descargar Neovim. Revisa la URL o la conexión a internet."
+    exit 1
 fi
 
-# recargar la terminal
+# Extraer el contenido del tarball
+tar xzvf nvim-linux-x86_64.tar.gz
+
+# Mover los archivos a /opt/nvim
+sudo mv nvim-linux-x86_64 /opt/nvim
+
+# Eliminar el archivo tarball descargado
+rm nvim-linux-x86_64.tar.gz
+
+# Agregar Neovim al PATH si no está ya agregado
+if ! grep -q '/opt/nvim/bin' ~/.bashrc; then
+    echo 'export PATH="$PATH:/opt/nvim/bin"' >> ~/.bashrc
+fi
+
+# Recargar la configuración de bash para la sesión actual
 source ~/.bashrc
+
+# Mostrar la versión de Neovim para confirmar la instalación
+nvim --version
 
