@@ -47,3 +47,30 @@ vim.keymap.set("n", "<Leader>l", "<C-w>l", {desc = "Ir a la ventana derecha"})
 
 vim.keymap.set('n', '<Leader>bb', ':bn<CR>', {desc = "Ir al siguiente buffer"})
 
+vim.keymap.set("n", "<leader>lf", function() -- LSP format
+  vim.lsp.buf.format({ async = false })
+end, { desc = "LSP Format buffer" })
+
+-- Lua indent to 2 spaces
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.expandtab = true
+  end,
+})
+-- Verilog indent to 2 spaces
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "verilog", "systemverilog" },
+  callback = function()
+    vim.opt_local.expandtab = true   -- usar espacios
+    vim.opt_local.tabstop = 2        -- tamaño visual del tab
+    vim.opt_local.shiftwidth = 2     -- indentación automática
+    vim.opt_local.softtabstop = 2
+  end,
+})
+
+
+
