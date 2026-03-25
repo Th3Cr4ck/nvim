@@ -1,19 +1,44 @@
-return{
- -- 'EdenEast/nightfox.nvim',
-    "rebelot/kanagawa.nvim",
-	 -- 'uloco/bluloco.nvim',
-dependencies = { 'rktjmp/lush.nvim' },
-	lazy = false, -- make sure we load this during startup 
-	priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-	-- require ("bluloco").setup()
-	-- vim.cmd("colorscheme bluloco")
-      	-- load the colorscheme here
-        -- vim.cmd([[colorscheme nightfox]])
-        -- vim.cmd([[colorscheme dayfox]])
-		vim.cmd("colorscheme kanagawa")
-		-- require ("bluloco").setup({transparent = true})
-		-- transparent = true
-    end,
-}
+-- local theme = "kanagawa"
+-- local theme = "kanagawa-dragon"
+-- local theme = "nightfox"
+-- local theme = "dayfox"
+local theme = "carbonfox"
+-- local theme = "bluloco"
 
+return {
+
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = not theme:match("^kanagawa"),
+    priority = 1000,
+    config = function()
+      if theme:match("^kanagawa") then
+        vim.cmd("colorscheme " .. theme)
+      end
+    end,
+  },
+
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = not theme:match("fox"),
+    priority = 1000,
+    config = function()
+      if theme:match("fox") then
+        vim.cmd("colorscheme " .. theme)
+      end
+    end,
+  },
+
+  {
+    "uloco/bluloco.nvim",
+    dependencies = { "rktjmp/lush.nvim" },
+    lazy = theme ~= "bluloco",
+    priority = 1000,
+    config = function()
+      if theme == "bluloco" then
+        require("bluloco").setup({})
+        vim.cmd("colorscheme bluloco")
+      end
+    end,
+  },
+}
