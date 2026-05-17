@@ -15,6 +15,7 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
     },
     opts = function()
@@ -55,6 +56,8 @@ return {
 
         sources = {
           { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "path" },
           { name = "buffer" },
         },
       }

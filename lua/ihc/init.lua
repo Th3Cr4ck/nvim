@@ -11,7 +11,6 @@ vim.lsp.enable({
 require("ihc.lazy.lazy")
 
 
-
 -- Autocompletado al conectar un cliente
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
