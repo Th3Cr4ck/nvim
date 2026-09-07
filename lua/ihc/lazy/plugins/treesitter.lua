@@ -10,6 +10,7 @@ return {
       ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "c_sharp", "cpp", "verilog", "python" },
       sync_install = false,
       highlight = { enable = true },
+      incremental_selection = { enable = true },
       indent = { enable = true },
     })
   end

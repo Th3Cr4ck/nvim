@@ -2,10 +2,10 @@
 -- local theme = "kanagawa-dragon"
 -- local theme = "nightfox"
 -- local theme = "dayfox"
--- local theme = "carbonfox"
+local theme = "carbonfox"
 -- local theme = "bluloco"
 
---[[ return {
+return {
 
   {
     "rebelot/kanagawa.nvim",
@@ -41,17 +41,4 @@
       end
     end,
   },
-} ]]
-
-return {
-  {
-    "EdenEast/nightfox.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      local theme = require("ihc.theme_switcher")
-      theme.apply()
-      theme.start_timer(30)
-    end,
-  }
 }

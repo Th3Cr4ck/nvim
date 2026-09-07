@@ -10,7 +10,8 @@ return{
 				lualine_z = {'datetime'}
 			},
 			options = {
-				globalstatus = true -- make global lualine showing
+				globalstatus = true, -- make global lualine showing
+        theme = "auto",
 			},
 		}
 	end
